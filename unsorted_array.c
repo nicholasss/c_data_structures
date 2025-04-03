@@ -16,7 +16,7 @@ uArray *initUArray(size_t capacity) {
   }
 
   // initilize data with capacity
-  arr->data = malloc(sizeof(int) * capacity);
+  arr->data = calloc(capacity, sizeof(int));
   if (arr->data == NULL) {
     free(arr);
     return NULL;
@@ -29,11 +29,24 @@ uArray *initUArray(size_t capacity) {
 
 // whether the function was successfull or not
 bool setNumber(uArray *arr, int index, int number) {
-  if (index - 1 > arr->capacity) {
+  if (index > arr->capacity) {
     printf("Unable to set. Index is larger than array capacity of: %zu\n",
            arr->capacity);
     return false;
   }
+
+  arr->data[index] = number;
+  return true;
+}
+
+// will return null if the index is not valid
+int getNumber(uArray *arr, int index) {
+  // is the number larger than capacity or lower than 0?
+  if (index > arr->capacity || index < 0) {
+    return NULL;
+  }
+
+  return arr->data[index];
 }
 
 int main(int argc, char *argv[]) {
@@ -42,7 +55,7 @@ int main(int argc, char *argv[]) {
   int capacity = 10;
   uArray *arr = initUArray(capacity);
   if (arr == NULL) {
-    return 1;
+    return EXIT_FAILURE;
   }
 
   return 0;
