@@ -30,8 +30,35 @@ uArray *initUArray(size_t capacity) {
   return arr;
 }
 
+bool appendUArray(uArray *arr, int number) {
+  if (arr->size >= arr->capacity) {
+    printf("Unable to append to full array.\n");
+    return false;
+  }
+
+  int index = arr->size;
+  arr->data[index] = number;
+  arr->size += 1;
+  return true;
+}
+
+int popUArray(uArray *arr) {
+  if (arr->size == 0) {
+    printf("Unable to pop from empty array.\n");
+    return -1;
+  }
+
+  int index = arr->size - 1;
+  int number = arr->data[index];
+
+  arr->size -= 1;
+  arr->data[index] = 0;
+  return number;
+}
+
 // whether the function was successfull or not
-bool setNumber(uArray *arr, int index, int number) {
+// this function should be an internal function
+bool setIndex(uArray *arr, int index, int number) {
   if ((size_t)index > arr->capacity) {
     printf("Unable to set. Index is larger than array capacity of: %zu\n",
            arr->capacity);
@@ -39,11 +66,12 @@ bool setNumber(uArray *arr, int index, int number) {
   }
 
   arr->data[index] = number;
+  arr->size += 1;
   return true;
 }
 
 // will return null if the index is not valid
-int getNumber(uArray *arr, int index) {
+int getIndex(uArray *arr, int index) {
   // is the number larger than capacity or lower than 0?
   if ((size_t)index > arr->capacity || index < 0) {
     return -1;
@@ -52,7 +80,7 @@ int getNumber(uArray *arr, int index) {
   return arr->data[index];
 }
 
-void freeuArray(uArray *arr) {
+void freeUArray(uArray *arr) {
   free(arr->data);
   free(arr);
 }
@@ -66,10 +94,10 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  setNumber(arr, 0, 1);
-  setNumber(arr, 1, 2);
+  setIndex(arr, 0, 1);
+  setIndex(arr, 1, 2);
 
-  int two = getNumber(arr, 1);
+  int two = getIndex(arr, 1);
   if (two == -1) {
     printf("Failure\n");
     return EXIT_FAILURE;
@@ -77,7 +105,7 @@ int main(int argc, char *argv[]) {
   printf("number should be 2, is: %d\n", two);
 
   // freed
-  freeuArray(arr);
+  freeUArray(arr);
   arr = NULL;
 
   return EXIT_SUCCESS;
