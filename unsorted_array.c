@@ -36,7 +36,7 @@ bool appendUArray(uArray *arr, int number) {
     return false;
   }
 
-  int index = arr->size;
+  int index = (int)arr->size;
   arr->data[index] = number;
   arr->size += 1;
   return true;
@@ -48,7 +48,7 @@ int popUArray(uArray *arr) {
     return -1;
   }
 
-  int index = arr->size - 1;
+  int index = (int)arr->size - 1;
   int number = arr->data[index];
 
   arr->size -= 1;
@@ -86,7 +86,7 @@ void freeUArray(uArray *arr) {
 }
 
 int main(int argc, char *argv[]) {
-  printf("Testing uArray.\n");
+  printf("Testing uArray.\n\n");
 
   int capacity = 10;
   uArray *arr = initUArray(capacity);
@@ -94,15 +94,18 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  setIndex(arr, 0, 1);
-  setIndex(arr, 1, 2);
+  appendUArray(arr, 1);
+  appendUArray(arr, 2);
+  appendUArray(arr, 3);
+
+  int three = popUArray(arr);
 
   int two = getIndex(arr, 1);
   if (two == -1) {
     printf("Failure\n");
     return EXIT_FAILURE;
   }
-  printf("number should be 2, is: %d\n", two);
+  printf("Number should be 2, is: %d\n", two);
 
   // freed
   freeUArray(arr);
