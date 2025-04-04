@@ -2,11 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct uArray {
-  int *data;
-  size_t size;
-  size_t capacity;
-} uArray;
+#include "unsorted_array.h"
 
 uArray *initUArray(size_t capacity) {
   // initialize array object
@@ -83,33 +79,4 @@ int getIndex(uArray *arr, int index) {
 void freeUArray(uArray *arr) {
   free(arr->data);
   free(arr);
-}
-
-int main(int argc, char *argv[]) {
-  printf("Testing uArray.\n\n");
-
-  int capacity = 10;
-  uArray *arr = initUArray(capacity);
-  if (arr == NULL) {
-    return EXIT_FAILURE;
-  }
-
-  appendUArray(arr, 1);
-  appendUArray(arr, 2);
-  appendUArray(arr, 3);
-
-  int three = popUArray(arr);
-
-  int two = getIndex(arr, 1);
-  if (two == -1) {
-    printf("Failure\n");
-    return EXIT_FAILURE;
-  }
-  printf("Number should be 2, is: %d\n", two);
-
-  // freed
-  freeUArray(arr);
-  arr = NULL;
-
-  return EXIT_SUCCESS;
 }
