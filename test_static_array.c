@@ -1,4 +1,4 @@
-#include "unsorted_array.h"
+#include "static_array.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,11 +6,11 @@ int main(int argc, char *argv[]) {
 
   // testing unsorted array with 10
   size_t capacity = (size_t)10;
-  uArray *array = initUArray(capacity);
+  Array *array = initArray(capacity);
 
   // adding ten items
   for (int i = 0; i < 10; i++) {
-    bool ok = appendUArray(array, i + 1);
+    bool ok = appendArray(array, i + 1);
 
     if (!ok) {
       printf("ERROR Unable to append to array.\n");
@@ -19,15 +19,15 @@ int main(int argc, char *argv[]) {
   }
 
   // prints whole array
-  dumpUArray(array);
+  dumpArray(array);
 
   // removing ten items
   for (int i = 0; i < 10; i++) {
-    int num = popUArray(array);
+    int num = popArray(array);
     printf("num popped: %d\n", num);
   }
 
-  freeUArray(array);
+  freeArray(array);
 
   return EXIT_SUCCESS;
 }

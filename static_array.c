@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "unsorted_array.h"
+#include "static_array.h"
 
-uArray *initUArray(size_t capacity) {
+Array *initArray(size_t capacity) {
   // initialize array object
-  uArray *arr = malloc(sizeof(uArray));
+  Array *arr = malloc(sizeof(Array));
   if (arr == NULL) {
     return NULL;
   }
@@ -26,12 +26,12 @@ uArray *initUArray(size_t capacity) {
   return arr;
 }
 
-void freeUArray(uArray *arr) {
+void freeArray(Array *arr) {
   free(arr->data);
   free(arr);
 }
 
-bool appendUArray(uArray *arr, int number) {
+bool appendArray(Array *arr, int number) {
   if (arr->size >= arr->capacity) {
     printf("Unable to append to full array.\n");
     return false;
@@ -43,7 +43,7 @@ bool appendUArray(uArray *arr, int number) {
   return true;
 }
 
-int popUArray(uArray *arr) {
+int popArray(Array *arr) {
   if (arr->size == 0) {
     printf("Unable to pop from empty array.\n");
     return -1;
@@ -59,7 +59,7 @@ int popUArray(uArray *arr) {
 
 // whether the function was successfull or not
 // this function should be an internal function
-bool setIndex(uArray *arr, int index, int number) {
+bool setIndex(Array *arr, int index, int number) {
   if ((size_t)index > arr->capacity) {
     printf("Unable to set. Index is larger than array capacity of: %zu\n",
            arr->capacity);
@@ -72,7 +72,7 @@ bool setIndex(uArray *arr, int index, int number) {
 }
 
 // will return null if the index is not valid
-int getIndex(uArray *arr, int index) {
+int getIndex(Array *arr, int index) {
   // is the number larger than capacity or lower than 0?
   if ((size_t)index > arr->capacity || index < 0) {
     return -1;
@@ -81,7 +81,7 @@ int getIndex(uArray *arr, int index) {
   return arr->data[index];
 }
 
-void dumpUArray(uArray *arr) {
+void dumpArray(Array *arr) {
   for (int i = 0; i <= arr->capacity - 1; i++) {
     printf("index: %d -> %d\n", i, arr->data[i]);
   }

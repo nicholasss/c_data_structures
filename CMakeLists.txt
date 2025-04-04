@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.20...4.0)
 
 # project 'statement' listing version and languages is nice here
-project(DS
+project(Data_Structures
   VERSION 0.0.1
   LANGUAGES C)
 
@@ -13,15 +13,15 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 # libraries
-add_library(UnsortedArray STATIC unsorted_array.c unsorted_array.h)
+add_library(StaticArray STATIC static_array.c static_array.h)
 
 # add executable
-add_executable(TestUnsortedArray test_unsorted_array.c)
+add_executable(TestStaticArray test_static_array.c)
 
 # set target and direct to link with libraries
-target_link_libraries(TestUnsortedArray UnsortedArray)
+target_link_libraries(TestStaticArray StaticArray)
 
 # set compiler flags
-target_compile_options(TestUnsortedArray PRIVATE
+target_compile_options(TestStaticArray PRIVATE
   -g3 -Wall -Wextra -Wconversion -Wdouble-promotion
   -Wno-unused-parameter -Wno-unused-function -Wno-sign-conversion)
