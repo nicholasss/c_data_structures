@@ -1,6 +1,7 @@
 #ifndef UNSORTED_ARRAY
 #define UNSORTED_ARRAY
 
+#include <stdbool.h>
 #include <stdlib.h>
 
 typedef struct uArray {
@@ -17,5 +18,7 @@ int popUArray(uArray *arr);
 
 bool setIndex(uArray *arr, int index, int number);
 int getIndex(uArray *arr, int index);
+
+void dumpUArray(uArray *arr);
 
 #endif

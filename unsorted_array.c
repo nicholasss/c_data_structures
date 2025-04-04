@@ -26,6 +26,11 @@ uArray *initUArray(size_t capacity) {
   return arr;
 }
 
+void freeUArray(uArray *arr) {
+  free(arr->data);
+  free(arr);
+}
+
 bool appendUArray(uArray *arr, int number) {
   if (arr->size >= arr->capacity) {
     printf("Unable to append to full array.\n");
@@ -76,7 +81,8 @@ int getIndex(uArray *arr, int index) {
   return arr->data[index];
 }
 
-void freeUArray(uArray *arr) {
-  free(arr->data);
-  free(arr);
+void dumpUArray(uArray *arr) {
+  for (int i = 0; i <= arr->capacity - 1; i++) {
+    printf("index: %d -> %d\n", i, arr->data[i]);
+  }
 }
