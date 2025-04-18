@@ -88,7 +88,7 @@ bool appendDArray(DArray *arr, int num) {
 }
 
 bool replaceAtIndexDArray(DArray *arr, int num, int index) {
-  // validate the array type
+  // check array
   if (arr == nil) {
     printf("[DArray Info] Unable to use nil DArray type.\n");
     return false;
@@ -134,6 +134,36 @@ int popFromDarray(DArray *arr) {
 
   // clear at index and adjust size
   arr->data[popIndex] = 0;
+  arr->size--;
+
+  return popElement;
+}
+
+int removeAtIndexDArray(DArray *arr, int index) {
+  // check array
+  if (arr == nil) {
+    printf("[DArray Info] Unable to use nil DArray type.\n");
+    return false;
+  }
+
+  // check if index is ok, aka not further than end of array nums
+  if (index > (arr->size - 1)) {
+    printf("[DArray Info] Unable to remove element from invalid index.\n");
+    return false;
+  }
+
+  // get element
+  int popElement = arr->data[index];
+
+  // TODO: check this speciifc section for correctness
+  // shift remaining elements over
+  int shiftStartingAtIndex = index + 1;
+  for (int i = shiftStartingAtIndex; i < (arr->size - 1); i++) {
+    arr->data[i] = arr->data[i + 1];
+  }
+
+  // set last element to 0
+  arr->data[arr->size] = 0;
   arr->size--;
 
   return popElement;
