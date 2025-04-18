@@ -171,7 +171,11 @@ int removeAtIndexDArray(DArray *arr, int index) {
 
   // TODO: check this speciifc section for correctness
   // shift remaining elements over
-  for (int i = index + 1; i < (arr->size - 1); i++) {
+  //
+  // Starts at the element that was removed
+  // Ends at the second to last element
+  // Moves the elements down until the end
+  for (int i = index; i < (arr->size - 1); i++) {
     arr->data[i] = arr->data[i + 1];
   }
 
