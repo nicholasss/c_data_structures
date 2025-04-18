@@ -115,6 +115,10 @@ bool replaceAtIndexDArray(DArray *arr, int num, int index) {
   return true;
 }
 
+// =================
+// Subtractive Funcs
+// =================
+
 int popFromDarray(DArray *arr) {
   // check array
   if (arr == nil) {
