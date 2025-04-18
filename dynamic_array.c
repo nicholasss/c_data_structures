@@ -67,6 +67,16 @@ DArray *increaseDArrayCapacity(DArray *arr) {
   return arr;
 }
 
+int getLengthOfDArray(DArray *arr) {
+  // check array
+  if (arr == nil) {
+    printf("[DArray Info] Unable to use nil DArray type.\n");
+    return false;
+  }
+
+  return arr->size;
+}
+
 // ==============
 // Additive Funcs
 // ==============

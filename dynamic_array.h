@@ -37,6 +37,9 @@ void clearDArray(DArray *arr);
 // increases the capacity of the array
 DArray *increaseDArrayCapacity(DArray *arr);
 
+// simply gets the current length of the array
+int getLengthOfDArray(DArray *arr);
+
 // ==============
 // Additive Funcs
 // ==============
