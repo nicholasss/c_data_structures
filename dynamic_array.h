@@ -52,7 +52,7 @@ bool replaceAtIndexDArray(DArray *arr, int num, int index);
 // =================
 
 // pop from last index
-int popFromDArray(DArray *arr, int index);
+int popFromDArray(DArray *arr);
 
 // pops from specific index, shifts elements
 int removeAtIndexDArray(DArray *arr, int index);

@@ -88,9 +88,14 @@ bool appendDArray(DArray *arr, int num) {
 }
 
 bool replaceAtIndexDArray(DArray *arr, int num, int index) {
+  // validate the array type
+  if (arr == nil) {
+    printf("[DArray Info] Unable to use nil DArray type.\n");
+    return false;
+  }
+
   // check for index within capacity
   if (index > (arr->capacity - 1)) {
-
     // increase capacity until index fits
     while (index > (arr->capacity - 1)) {
       arr = increaseDArrayCapacity(arr);
@@ -105,13 +110,31 @@ bool replaceAtIndexDArray(DArray *arr, int num, int index) {
     return false;
   }
 
-  // validate the array type
+  // actually replace the number now
+  arr->data[index] = num;
+  return true;
+}
+
+int popFromDarray(DArray *arr) {
+  // check array
   if (arr == nil) {
     printf("[DArray Info] Unable to use nil DArray type.\n");
     return false;
   }
 
-  // actually replace the number now
-  arr->data[index] = num;
-  return true;
+  // check size
+  if (arr->size <= 0) {
+    printf("[DArray Info] Unable to pop from empty array.\n");
+    return nil;
+  }
+
+  // get element
+  int popIndex = arr->size - 1;
+  int popElement = arr->data[popIndex];
+
+  // clear at index and adjust size
+  arr->data[popIndex] = 0;
+  arr->size--;
+
+  return popElement;
 }
