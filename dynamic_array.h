@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+#define nil NULL
+
 // ================
 // Data Struct Type
 // ================
