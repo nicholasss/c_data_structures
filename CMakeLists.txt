@@ -10,6 +10,22 @@ project(Data_Structures
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
+# setting debug option
+set(CMAKE_BUILD_TYPE Debug)
+
+# setting compiler flags
+set(COMPILER_FLAGS
+  -g
+  -Wall
+  -Wextra
+  -Wconversion
+  -Wdouble-promotion
+  -Wno-unused-parameter
+  -Wno-unused-function
+  -Wno-sign-conversion
+  -Wpedantic
+)
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 # libraries
@@ -22,6 +38,4 @@ add_executable(TestStaticArray test_static_array.c)
 target_link_libraries(TestStaticArray StaticArray)
 
 # set compiler flags
-target_compile_options(TestStaticArray PRIVATE
-  -g3 -Wall -Wextra -Wconversion -Wdouble-promotion
-  -Wno-unused-parameter -Wno-unused-function -Wno-sign-conversion)
+target_compile_options(TestStaticArray PRIVATE ${COMPILER_FLAGS})
