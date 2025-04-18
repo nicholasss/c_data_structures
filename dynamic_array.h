@@ -2,8 +2,10 @@
 #define DYNAMIC_ARRAY
 
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 
+// library definitions
 #define nil NULL
 
 #define initialCapacity 8
@@ -43,7 +45,7 @@ DArray *increaseDArrayCapacity(DArray *arr);
 bool appendDArray(DArray *arr, int num);
 
 // replace item in array
-bool setAtIndexDArray(DArray *arr, int num, int index);
+bool replaceAtIndexDArray(DArray *arr, int num, int index);
 
 // =================
 // Subtractive Funcs
@@ -53,7 +55,7 @@ bool setAtIndexDArray(DArray *arr, int num, int index);
 int popFromDArray(DArray *arr, int index);
 
 // pops from specific index, shifts elements
-int popAtIndexDArray(DArray *arr, int index);
+int removeAtIndexDArray(DArray *arr, int index);
 
 // ============
 // Access Funcs
