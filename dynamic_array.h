@@ -6,6 +6,9 @@
 
 #define nil NULL
 
+#define initialCapacity 8
+#define capacityMultiplier 2
+
 // ================
 // Data Struct Type
 // ================
