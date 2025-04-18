@@ -5,9 +5,6 @@
 // ================
 
 DArray *initDArray() {
-  // start with set capacity
-  size_t capacity = 8;
-
   // init struct
   DArray *arr = malloc(sizeof(DArray));
   if (arr == nil) {
@@ -15,7 +12,7 @@ DArray *initDArray() {
   }
 
   // init the data array
-  arr->data = calloc(sizeof(int), capacity);
+  arr->data = calloc(sizeof(int), initialCapacity);
   if (arr->data == nil) {
     free(arr);
     arr = nil; // set pointer to nil
@@ -56,4 +53,28 @@ void clearDArray(DArray *arr) {
 // Additive Funcs
 // ==============
 
-bool appendDArray(DArray *arr, int num) { return false; }
+bool appendDArray(DArray *arr, int num) {
+  // check size and capacity
+  if (arr->size >= arr->capacity) {
+    if (arr->data == nil) {
+      // failed with nil pointer
+      return false;
+    }
+
+    // extend capacity of array before adding
+    size_t newCapacity = arr->capacity * capacityMultiplier;
+
+    // setting new values
+    arr->data = realloc(arr->data, newCapacity);
+    arr->capacity = newCapacity;
+  }
+
+  // append the new num
+  int i = arr->capacity;
+  arr->data[i] = num;
+
+  // increase arr size counter
+  arr->size++;
+
+  return false;
+}
