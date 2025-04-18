@@ -71,7 +71,7 @@ int getLengthOfDArray(DArray *arr) {
   // check array
   if (arr == nil) {
     printf("[DArray Info] Unable to use nil DArray type.\n");
-    return false;
+    return nil;
   }
 
   return arr->size;
@@ -133,7 +133,7 @@ int popFromDarray(DArray *arr) {
   // check array
   if (arr == nil) {
     printf("[DArray Info] Unable to use nil DArray type.\n");
-    return false;
+    return nil;
   }
 
   // check size
@@ -157,13 +157,13 @@ int removeAtIndexDArray(DArray *arr, int index) {
   // check array
   if (arr == nil) {
     printf("[DArray Info] Unable to use nil DArray type.\n");
-    return false;
+    return nil;
   }
 
   // check if index is ok, aka not further than end of array nums
   if (index > (arr->size - 1)) {
     printf("[DArray Info] Unable to remove element from invalid index.\n");
-    return false;
+    return nil;
   }
 
   // get element
