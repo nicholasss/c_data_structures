@@ -49,6 +49,24 @@ void clearDArray(DArray *arr) {
   return;
 }
 
+DArray *increaseDArrayCapacity(DArray *arr) {
+  // assumes capcity check before calling
+
+  if (arr->data == nil) {
+    // failed with nil pointer
+    return false;
+  }
+
+  // extend capacity of array before adding
+  size_t newCapacity = arr->capacity * capacityMultiplier;
+
+  // setting new values
+  arr->data = realloc(arr->data, newCapacity);
+  arr->capacity = newCapacity;
+
+  return arr;
+}
+
 // ==============
 // Additive Funcs
 // ==============
@@ -56,17 +74,7 @@ void clearDArray(DArray *arr) {
 bool appendDArray(DArray *arr, int num) {
   // check size and capacity
   if (arr->size >= arr->capacity) {
-    if (arr->data == nil) {
-      // failed with nil pointer
-      return false;
-    }
-
-    // extend capacity of array before adding
-    size_t newCapacity = arr->capacity * capacityMultiplier;
-
-    // setting new values
-    arr->data = realloc(arr->data, newCapacity);
-    arr->capacity = newCapacity;
+    arr = increaseDArrayCapacity(arr);
   }
 
   // append the new num
