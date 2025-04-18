@@ -86,3 +86,32 @@ bool appendDArray(DArray *arr, int num) {
 
   return false;
 }
+
+bool replaceAtIndexDArray(DArray *arr, int num, int index) {
+  // check for index within capacity
+  if (index > (arr->capacity - 1)) {
+
+    // increase capacity until index fits
+    while (index > (arr->capacity - 1)) {
+      arr = increaseDArrayCapacity(arr);
+    }
+  }
+
+  // check for index within size, aka not further than known values
+  if (index > (arr->size - 1)) {
+    printf(
+        "[DArray Info] Unable to set value %d where there is no set value.\n",
+        num);
+    return false;
+  }
+
+  // validate the array type
+  if (arr == nil) {
+    printf("[DArray Info] Unable to use nil DArray type.\n");
+    return false;
+  }
+
+  // actually replace the number now
+  arr->data[index] = num;
+  return true;
+}
