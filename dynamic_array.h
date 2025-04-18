@@ -32,6 +32,9 @@ void freeDArray(DArray *arr);
 // clear the array for reuse
 void clearDArray(DArray *arr);
 
+// increases the capacity of the array
+DArray *increaseDArrayCapacity(DArray *arr);
+
 // ==============
 // Additive Funcs
 // ==============
